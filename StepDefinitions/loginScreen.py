@@ -2,6 +2,8 @@ import pytest
 from pytest_bdd import given, when, then, scenarios
 from playwright.sync_api import Page
 
+from POMfiles import *
+
 
 scenarios('../Features')
 
@@ -12,15 +14,22 @@ def login_page(browserpage:Page):
 
 
 @when('enter Username and password')
-def username_pwd(browserpage:Page):
-    yield
+def username_pwd(browserpage:Page, un, pwd):
+
+    lse = loginScrEle(browserpage)
+    lse.getElements('username').fill('rjrishi.35@gmail.com')
+    lse.getElements('password').fill('abcdefgh')
 
 
 @when('click on Login button')
 def login_btn(browserpage:Page):
-    yield
+
+    lse = loginScrEle(browserpage)
+    lse.getElements('loginBtn').click()
 
 
 @then('verify user able to land on Homescreen page')
 def homescreen(browserpage:Page):
-    yield
+
+    hse = homeScrEle(browserpage)
+    assert hse.getElement('homepage').inner_text() == 'Automation'
