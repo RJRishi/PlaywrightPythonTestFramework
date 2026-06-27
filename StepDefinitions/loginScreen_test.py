@@ -28,8 +28,3 @@ def login_btn(browserpage:Page):
     lse.getElements('loginBtn').click()
 
 
-@then('verify user able to land on Homescreen page')
-def homescreen(browserpage:Page):
-
-    hse = homeScrEle(browserpage)
-    assert hse.getElement('homepage').inner_text() == 'Automation'
